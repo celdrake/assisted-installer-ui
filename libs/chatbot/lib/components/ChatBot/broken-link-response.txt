@@ -1,0 +1,18 @@
+data: {"event": "start", "data": {"conversation_id": "adc760c0-fd3b-4e78-bfa0-c1a52a4a802e"}}
+
+data: {"event": "token", "data": {"id": 0, "role": "tool_execution", "token": "cluster_iso_download_url"}}
+
+data: {"event": "token", "data": {"id": 1, "role": "inference", "token": "Here is the Discovery ISO download URL for your cluster `celia-aichat-july22`:\n\nURL: `https://api.integration.openshift.com/api/assisted-images/bytoken/eyJhb"}}
+
+data: {"event": "token", "data": {"id": 2, "role": "inference", "token": "GciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3NTMxODMzNjMsInN1YiI6ImY1MzcyNDRlL"}}
+
+data: {"event": "token", "data": {"id": 3, "role": "inference", "token": "TAwN2MtNGQ1Yy1iZWEyLWU3ZjM3MzI5YTI2ZCJ9.bRyHUjWk5iYCmmzW0w_KpRKat"}}
+
+data: {"event": "token", "data": {"id": 4, "role": "inference", "token": "rdcxk2zYc1bKpVikEE/4.19/x86_64/minimal.iso`\nExpires at: `2025-07-22 11:"}}
+
+data: {"event": "token", "data": {"id": 5, "role": "inference", "token": "22:43+00:00`\n\nPlease use this URL to download the ISO and boot your host(s). Once your hosts are discovered, we can proceed with further configuration.\n\nWhat would you like to do next?\n"}}
+
+data: {"event": "token", "data": {"id": 6, "role": "inference", "token": "*   **Check the status of your cluster?**\n*   **List discovered hosts?**\n*   **Or something else?**"}}
+
+data: {"event": "end", "data": {"referenced_documents": [], "truncated": null, "input_tokens": 0, "output_tokens": 0}, "available_quotas": {}}
+

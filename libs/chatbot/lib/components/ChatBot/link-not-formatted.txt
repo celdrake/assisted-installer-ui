@@ -1,0 +1,18 @@
+data: {"event": "start", "data": {"conversation_id": "adc760c0-fd3b-4e78-bfa0-c1a52a4a802e"}}
+
+data: {"event": "token", "data": {"id": 0, "role": "tool_execution", "token": "cluster_iso_download_url"}}
+
+data: {"event": "token", "data": {"id": 1, "role": "inference", "token": "Here is"}}
+
+data: {"event": "token", "data": {"id": 2, "role": "inference", "token": " the Discovery ISO download URL for your cluster `celia-aichat-july22` again:\n\nURL: `https://api.integration.openshift.com/api/assisted-images/bytoken/eyJhb"}}
+
+data: {"event": "token", "data": {"id": 3, "role": "inference", "token": "GciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3NTMxODM0MzEsInN1YiI6ImY1MzcyNDRlLTAwN"}}
+
+data: {"event": "token", "data": {"id": 4, "role": "inference", "token": "2MtNGQ1Yy1iZWEyLWU3ZjM3MzI5YTI2ZCJ9.Us6DErYgtpSM2Xfvlrpt8lusVbRFk_ya-"}}
+
+data: {"event": "token", "data": {"id": 5, "role": "inference", "token": "Edy5Z9oLVs/4.19/x86_64/minimal.iso`\nExpires at: `2025-07-22 11:23:51"}}
+
+data: {"event": "token", "data": {"id": 6, "role": "inference", "token": "+00:00`\n\nIs there anything else I can help you with regarding this cluster, or would you like to proceed with creating a new one as you mentioned earlier?"}}
+
+data: {"event": "end", "data": {"referenced_documents": [], "truncated": null, "input_tokens": 0, "output_tokens": 0}, "available_quotas": {}}
+

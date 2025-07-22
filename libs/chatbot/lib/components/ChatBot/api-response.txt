@@ -1,0 +1,12 @@
+data: {"event": "start", "data": {"conversation_id": "76ebf616-bb84-4a3f-9b38-65833f0e138c"}}
+
+data: {"event": "token", "data": {"id": 0, "role": "inference", "token": "You can add the following operator bundles to your cluster:\n\n*   **Virtualization**: Run virtual machines alongside containers on one platform. This bundle includes:\n"}}
+
+data: {"event": "token", "data": {"id": 1, "role": "inference", "token": "    *   nmstate\n    *   cnv\n    *   node-maintenance\n    *   kube-descheduler\n    *   mtv\n\n*   **OpenShift AI**: Train, serve, monitor and manage AI"}}
+
+data: {"event": "token", "data": {"id": 2, "role": "inference", "token": "/ML models and applications using GPUs. This bundle includes:\n    *   pipelines\n    *   servicemesh\n    *   authorino\n    *   amd-gpu\n    *   node-feature-discovery\n    "}}
+
+data: {"event": "token", "data": {"id": 3, "role": "inference", "token": "*   nvidia-gpu\n    *   serverless\n    *   openshift-ai\n    *   odf\n    *   kmm"}}
+
+data: {"event": "end", "data": {"referenced_documents": [], "truncated": null, "input_tokens": 0, "output_tokens": 0}, "available_quotas": {}}
+
