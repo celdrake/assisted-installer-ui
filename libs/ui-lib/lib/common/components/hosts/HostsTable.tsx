@@ -71,15 +71,19 @@ const HostsTable = ({
   relevanceSorted,
   ...rest
 }: HostsTableProps & WithTestID) => {
-  const data = React.useMemo(
-    () =>
-      (hosts || [])
-        .filter((host) => !skipDisabled || host.status !== 'disabled')
-        .sort((a, b) =>
-          relevanceSorted ? 0 : a.createdAt && b.createdAt && a.createdAt < b.createdAt ? -1 : 1,
-        ),
-    [hosts, skipDisabled, relevanceSorted],
-  );
+  const data = React.useMemo(() => {
+    const filtered = (hosts || []).filter((host) => !skipDisabled || host.status !== 'disabled');
+
+    if (relevanceSorted) {
+      // When relevance sorted, preserve the existing order (already sorted by Fuse.js)
+      return filtered;
+    }
+
+    // Normal sorting by creation date
+    return filtered.sort((a, b) =>
+      a.createdAt && b.createdAt && a.createdAt < b.createdAt ? -1 : 1,
+    );
+  }, [hosts, skipDisabled, relevanceSorted]);
 
   return (
     <AITable<Host> getDataId={getHostId} data={data} relevanceSorted={relevanceSorted} {...rest} />

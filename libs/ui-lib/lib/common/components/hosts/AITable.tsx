@@ -109,7 +109,6 @@ const AITable = <R extends any>({
   const itemIDs = React.useMemo(() => data.map(getDataId), [data, getDataId]);
   const [openRows, setOpenRows] = React.useState<OpenRows>({});
 
-  const sortByRef = React.useRef<ISortBy>();
   const [sortBy, setSortBy] = React.useState<ISortBy>({
     index: onSelect ? 1 : 0,
     direction: SortByDirection.asc,
@@ -134,29 +133,6 @@ const AITable = <R extends any>({
       }
     }
   }, [data, setSelectedIDs, selectedIDs, getDataId]);
-
-  React.useEffect(() => {
-    if (relevanceSorted) {
-      sortByRef.current = sortBy;
-      setSortBy({
-        index: -1,
-        direction: SortByDirection.asc,
-      });
-    } else {
-      if (sortBy.index === -1 && sortByRef.current) {
-        setSortBy(sortByRef.current);
-      }
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [relevanceSorted]);
-
-  React.useEffect(() => {
-    if (!relevanceSorted) {
-      sortByRef.current = sortBy;
-    } else if (relevanceSorted && sortBy.index !== -1) {
-      sortByRef.current = sortBy;
-    }
-  }, [sortBy, relevanceSorted]);
 
   const onSelectAll = React.useCallback(
     (isChecked: boolean) => {
@@ -190,11 +166,11 @@ const AITable = <R extends any>({
       (c) =>
         ({
           ...c.header,
-          sort: c.header.sort ?? true,
+          sort: relevanceSorted ? false : c.header.sort ?? true,
         } as TableMemoColType),
     );
     return [newContent, columns];
-  }, [canSelectAll, content, getDataId, onSelect, onSelectAll]);
+  }, [canSelectAll, content, getDataId, onSelect, onSelectAll, relevanceSorted]);
 
   const getRows = React.useCallback(
     (data: R[]) =>
@@ -235,22 +211,25 @@ const AITable = <R extends any>({
     [hostRows, openRows],
   );
 
-  const onSort: OnSort = React.useCallback((_event, index, direction) => {
-    setOpenRows({}); // collapse all
-    setSortBy({
-      index,
-      direction,
-    });
-  }, []);
+  const onSort: OnSort = React.useCallback(
+    (_event, index, direction) => {
+      if (relevanceSorted) {
+        return; // Prevent sorting when data is relevance sorted
+      }
+      setOpenRows({}); // collapse all
+      setSortBy({
+        index,
+        direction,
+      });
+    },
+    [relevanceSorted],
+  );
 
   const sortedRows = React.useMemo(() => {
-    if (relevanceSorted && sortBy.index === -1) {
-      return getRows(data);
-    }
-    return rows.sort(
+    return [...rows].sort(
       rowSorter(sortBy, (row: IRow, index = 0) => row.cells?.[index] as string | HumanizedSortable),
     );
-  }, [relevanceSorted, sortBy, rows, getRows, data]);
+  }, [rows, sortBy]);
 
   return (
     <>
@@ -261,12 +240,12 @@ const AITable = <R extends any>({
         }}
       >
         <AITableMemo
-          rows={sortedRows as TableMemoProps['rows']}
+          rows={(relevanceSorted ? rows : sortedRows) as TableMemoProps['rows']}
           cols={columns}
           onCollapse={ExpandComponent ? onCollapse : undefined}
           className={className}
           data-testid={testId}
-          sortBy={sortBy}
+          sortBy={relevanceSorted ? { index: -1, direction: SortByDirection.asc } : sortBy}
           onSort={onSort}
           variant={variant}
         />
